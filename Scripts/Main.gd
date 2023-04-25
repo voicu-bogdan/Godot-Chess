@@ -51,6 +51,7 @@ var blackCastleRight = 1
 var blackCastleLeft = 1
 var promotePawni = 0
 var promotePawnj = 0
+var hasWon = 0;
 #var whiteHasKing = 1
 #var blackHasKing = 1
 
@@ -853,29 +854,38 @@ func refreshTextures():
 				whiteHasKing = 1
 			if boardArray[j-1][i-1] == 12:
 				blackHasKing = 1
+	if (hasWon == 1):
+		pass
 #	if(turn):
 ##		var bk = preload("res://Assets/Pieces Black/black_king.png")
 #		turnDisplay.color = Color(globvar.white)
 #	else:
 ##		var bk = preload("res://Assets/Pieces Black Flipped/black_king_flipped.png")
 #		turnDisplay.color = Color(globvar.black)
-	if whiteHasKing == 0:
-		winDisplay.text = "Black Wins!"
-		for j in range(0, 8):
-			for i in range(0, 8):
-				buttonTiles[((j-1)*8+i)].disabled = true;
-	if blackHasKing == 0:
-		winDisplay.text = "White Wins!"
-		for j in range(0, 8):
-			for i in range(0, 8):
-				buttonTiles[((j-1)*8+i)].disabled = true;
-	if(selectedPiece != -1):
-		buttonTiles[((last_j-1)*8+last_i-1)].material = ShaderMaterial.new()
-		buttonTiles[((last_j-1)*8+last_i-1)].material.shader = shader
-		buttonTiles[((last_j-1)*8+last_i-1)].material.set("shader_param/line_color", Color("#c388dd"))
-#		buttonTile.material = ShaderMaterial.new()
-#		buttonTile.material.shader = shader
-#		buttonTile.material.set("shader_param/line_color", Color(globvar.outline))
+	else:
+		if whiteHasKing == 0:
+			winDisplay.text = "Black Wins!"
+			for j in range(0, 8):
+				for i in range(0, 8):
+					buttonTiles[((j-1)*8+i)].disabled = true;
+			turn = 1;
+			hasWon = 1
+			refreshTextures()
+		elif blackHasKing == 0:
+			winDisplay.text = "White Wins!"
+			for j in range(0, 8):
+				for i in range(0, 8):
+					buttonTiles[((j-1)*8+i)].disabled = true;
+			turn = 1;
+			hasWon = 1
+			refreshTextures()
+		if(selectedPiece != -1):
+			buttonTiles[((last_j-1)*8+last_i-1)].material = ShaderMaterial.new()
+			buttonTiles[((last_j-1)*8+last_i-1)].material.shader = shader
+			buttonTiles[((last_j-1)*8+last_i-1)].material.set("shader_param/line_color", Color("#c388dd"))
+	#		buttonTile.material = ShaderMaterial.new()
+	#		buttonTile.material.shader = shader
+	#		buttonTile.material.set("shader_param/line_color", Color(globvar.outline))
 
 func _ready():
 	boardColor()
