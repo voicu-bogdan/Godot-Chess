@@ -51,6 +51,8 @@ var blackCastleRight = 1
 var blackCastleLeft = 1
 var promotePawni = 0
 var promotePawnj = 0
+#var whiteHasKing = 1
+#var blackHasKing = 1
 
 var texture_dict = {
 	0: null,
@@ -859,8 +861,14 @@ func refreshTextures():
 #		turnDisplay.color = Color(globvar.black)
 	if whiteHasKing == 0:
 		winDisplay.text = "Black Wins!"
+		for j in range(0, 8):
+			for i in range(0, 8):
+				buttonTiles[((j-1)*8+i)].disabled = true;
 	if blackHasKing == 0:
 		winDisplay.text = "White Wins!"
+		for j in range(0, 8):
+			for i in range(0, 8):
+				buttonTiles[((j-1)*8+i)].disabled = true;
 	if(selectedPiece != -1):
 		buttonTiles[((last_j-1)*8+last_i-1)].material = ShaderMaterial.new()
 		buttonTiles[((last_j-1)*8+last_i-1)].material.shader = shader
