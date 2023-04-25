@@ -1,0 +1,224 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Pieces White/white_knight.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Pieces Black/black_knight.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Pieces Black/black_rook.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Pieces White/white_bishop.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Pieces White/white_queen.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Pieces White/white_rook.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Pieces Black/black_queen.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Pieces Black/black_bishop.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.133333, 0.639216, 0.623529, 0.490196 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.133333, 0.639216, 0.623529, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.262745, 0.258824, 0.258824, 0.392157 )
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.133333, 0.133333, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="Container" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Container"]
+margin_left = 425.0
+margin_right = 599.0
+margin_bottom = 105.0
+custom_constants/hseparation = 0
+custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+text = "Return"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 105.0
+margin_right = 1024.0
+margin_bottom = 125.0
+custom_constants/separation = 20
+
+[node name="BoardContainer" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 125.0
+margin_right = 1024.0
+margin_bottom = 475.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="colorBoard" type="GridContainer" parent="MarginContainer/VBoxContainer/BoardContainer"]
+margin_left = 337.0
+margin_right = 687.0
+margin_bottom = 350.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 8
+
+[node name="Board" type="GridContainer" parent="MarginContainer/VBoxContainer/BoardContainer"]
+margin_left = 337.0
+margin_right = 687.0
+margin_bottom = 350.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 8
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 475.0
+margin_right = 1024.0
+margin_bottom = 495.0
+custom_constants/separation = 20
+
+[node name="Container2" type="AspectRatioContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 495.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="WinnerDisplay" type="Label" parent="MarginContainer/VBoxContainer/Container2"]
+margin_left = 459.5
+margin_top = 45.0
+margin_right = 564.5
+margin_bottom = 59.0
+
+[node name="TurnDisplay" type="ColorRect" parent="."]
+visible = false
+margin_left = 732.0
+margin_top = 282.0
+margin_right = 772.0
+margin_bottom = 322.0
+
+[node name="whitePromotion" type="HBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -22.0
+margin_right = 88.0
+margin_bottom = 22.0
+custom_constants/separation = 0
+
+[node name="wpromoteToBishop" type="TextureButton" parent="whitePromotion"]
+margin_right = 44.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="wpromoteToRook" type="TextureButton" parent="whitePromotion"]
+margin_left = 44.0
+margin_right = 88.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 7 )
+expand = true
+
+[node name="wpromoteToKnight" type="TextureButton" parent="whitePromotion"]
+margin_left = 88.0
+margin_right = 132.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="wpromoteToQueen" type="TextureButton" parent="whitePromotion"]
+margin_left = 132.0
+margin_right = 176.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 6 )
+expand = true
+
+[node name="blackPromotion" type="HBoxContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -88.0
+margin_top = -22.0
+margin_right = 88.0
+margin_bottom = 22.0
+custom_constants/separation = 0
+
+[node name="bpromoteToBishop" type="TextureButton" parent="blackPromotion"]
+margin_right = 44.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 9 )
+expand = true
+
+[node name="bpromoteToRook" type="TextureButton" parent="blackPromotion"]
+margin_left = 44.0
+margin_right = 88.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="bpromoteToKnight" type="TextureButton" parent="blackPromotion"]
+margin_left = 88.0
+margin_right = 132.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="bpromoteToQueen" type="TextureButton" parent="blackPromotion"]
+margin_left = 132.0
+margin_right = 176.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 8 )
+expand = true
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Container/Button" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="whitePromotion/wpromoteToBishop" to="." method="_on_wpromoteToBishop_button_up"]
+[connection signal="button_up" from="whitePromotion/wpromoteToRook" to="." method="_on_wpromoteToRook_button_up"]
+[connection signal="button_up" from="whitePromotion/wpromoteToKnight" to="." method="_on_wpromoteToKnight_button_up"]
+[connection signal="button_up" from="whitePromotion/wpromoteToQueen" to="." method="_on_wpromoteToQueen_button_up"]
+[connection signal="button_up" from="blackPromotion/bpromoteToBishop" to="." method="_on_bpromoteToBishop_button_up"]
+[connection signal="button_up" from="blackPromotion/bpromoteToRook" to="." method="_on_bpromoteToRook_button_up"]
+[connection signal="button_up" from="blackPromotion/bpromoteToKnight" to="." method="_on_bpromoteToKnight_button_up"]
+[connection signal="button_up" from="blackPromotion/bpromoteToQueen" to="." method="_on_bpromoteToQueen_button_up"]
